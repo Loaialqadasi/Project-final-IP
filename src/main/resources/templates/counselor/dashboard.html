@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Import Shared Header -->
+<head th:replace="~{fragments/header :: headContent}"></head>
+
+<body>
+    <!-- Import Shared Navbar -->
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold text-primary">Case Management Dashboard</h2>
+                <p class="text-muted">Welcome, <span th:text="${counselorName}">Counselor</span></p>
+            </div>
+            <button class="btn btn-outline-dark">📅 View Calendar</button>
+        </div>
+
+        <!-- Student List Table -->
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Matric ID</th>
+                            <th>Assessment Score</th>
+                            <th>Risk Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through the list from Controller -->
+                        <tr th:each="student : ${students}">
+                            <td class="fw-bold" th:text="${student.name}">Name</td>
+                            <td th:text="${student.matric}">ID</td>
+                            
+                            <!-- Color code the score -->
+                            <td>
+                                <span class="badge bg-secondary" th:text="${student.score} + '/27'"></span>
+                            </td>
+
+                            <!-- Color code the status -->
+                            <td>
+                                <span th:if="${student.status == 'High Risk'}" class="badge bg-danger">High Risk</span>
+                                <span th:if="${student.status == 'Stable'}" class="badge bg-success">Stable</span>
+                                <span th:if="${student.status == 'Attention Needed'}" class="badge bg-warning text-dark">Attention Needed</span>
+                            </td>
+
+                            <td>
+                                <a th:href="@{'/counselor/student/' + ${student.id}}" class="btn btn-sm btn-primary">Manage Case</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

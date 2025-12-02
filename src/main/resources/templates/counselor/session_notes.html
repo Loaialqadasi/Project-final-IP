@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headContent}"></head>
+<body>
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <div class="container mt-5">
+        <!-- Breadcrumb navigation -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/counselor/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Session Notes</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <!-- Left Side: Student Info -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 text-center p-4">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; font-size: 24px;">
+                        KA
+                    </div>
+                    <h4 th:text="${studentName}">Student Name</h4>
+                    <p class="text-muted">Matric: A23CS0001</p>
+                    <hr>
+                    <div class="text-start">
+                        <h6><strong>Previous Notes:</strong></h6>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item" th:each="note : ${history}" th:text="${note}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Write New Note -->
+            <div class="col-md-8">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-white fw-bold">Add New Session Note</div>
+                    <div class="card-body">
+                        
+                        <!-- Success Message -->
+                        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+                        <form action="/counselor/note/save" method="post">
+                            <input type="hidden" name="studentId" th:value="${studentId}">
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Date of Session</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Clinical Observations</label>
+                                <textarea name="noteContent" class="form-control" rows="6" placeholder="Write session details here..." required></textarea>
+                            </div>
+
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-success">Save to Record</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
