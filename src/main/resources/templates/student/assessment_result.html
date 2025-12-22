@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headContent}"></head>
+
+<body>
+
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <div class="container text-center pb-5">
+        
+        <h1 class="page-title">Stress & Anxiety Assessment</h1>
+        <p class="date-text">Completed on <span th:text="${date}">Today</span></p>
+
+        <div class="result-card">
+            
+            <div class="circle-wrap">
+                <svg class="progress-ring">
+                    <circle class="progress-ring__circle" stroke="#E5E7EB" stroke-width="20" r="100" cx="110" cy="110"/>
+                    
+                    <circle class="progress-ring__circle" 
+                            th:stroke="${(score * 1.0 / maxScore) > 0.6 ? '#EF4444' : ((score * 1.0 / maxScore) > 0.35 ? '#F59E0B' : '#84CC16')}" 
+                            stroke-width="20" r="100" cx="110" cy="110"
+                            stroke-dasharray="628"
+                            th:stroke-dashoffset="${628 - (628 * (score * 1.0 / maxScore))}"></circle>
+                </svg>
+
+                <div class="circle-inner">
+                    <div class="score-number" th:text="${score}">0</div>
+                    <div class="score-total">/ <span th:text="${maxScore}">27</span></div>
+                </div>
+                
+                <i class="fa-regular fa-circle-question position-absolute top-0 end-0 mt-2 me-2 text-secondary fs-5" 
+                   title="Score Calculation"></i>
+            </div>
+
+            <div th:class="'status-badge ' + ${badgeClass}" th:text="${status}">
+                Calculating...
+            </div>
+        </div>
+
+        <div class="result-card" style="text-align: left;">
+            <div class="meaning-section">
+                <h3 class="meaning-title">What this means</h3>
+                <p class="meaning-text" th:text="${feedbackText}">
+                    Loading your detailed analysis...
+                </p>
+                
+                <div class="d-flex justify-content-between">
+                    <button class="btn-blue-solid" disabled>
+                        Explore Self-Help Resources...
+                    </button>
+                    
+                    <a th:href="@{/assessment/download(data=${downloadData})}" class="btn-gray-solid">
+                        Download Full Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 text-muted small">
+            <a href="#" class="text-decoration-none text-muted border-bottom border-secondary">Learn more about this assessment</a>
+            <br><br>
+            Your results are confidential. <span class="text-decoration-underline">Privacy Policy</span>.
+        </div>
+
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
