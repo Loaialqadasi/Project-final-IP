@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/header :: headContent}"></head>
+
+  <body>
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <main class="content">
+      <header class="content-header">
+        <span>Welcome, Loai!</span>
+      </header>
+
+      <div class="counselors-wrapper">
+        <div class="counselors-header">
+          <h2>Meet Our Counselors</h2>
+          <p>
+            Find the right professional to support you on your journey. All
+            sessions are confidential.
+          </p>
+        </div>
+
+        <div class="counselor-grid">
+          <!-- Counselor Card 1 -->
+          <div class="counselor-card">
+            <img
+              th:src="@{/images/counselor1.png}"
+              alt="Photo of Dr. Nurul Aida"
+              class="counselor-photo"
+            />
+            <h3 class="counselor-name">Dr. Nurul Aida</h3>
+            <p class="counselor-bio">
+              Dr. Nurul Aida is a licensed psychologist with over 10 years of
+              experience helping individuals explore and understand gender
+              identity and non-traditional forms of expression.
+            </p>
+            <!-- This link will take the user to the booking page -->
+            <a th:href="@{/student/booking/1}" class="book-button">Book</a>
+          </div>
+
+          <!-- Counselor Card 2 -->
+          <div class="counselor-card">
+            <img
+              th:src="@{/images/counselor2.png}"
+              alt="Photo of Dr. Alex Park"
+              class="counselor-photo"
+            />
+            <h3 class="counselor-name">Dr. Alex Park</h3>
+            <p class="counselor-bio">
+              Dr. Park helps students manage stress, relationships, and
+              emotional health. He provides grounded support for those unsure
+              where to begin or who feel overwhelmed.
+            </p>
+            <a th:href="@{/student/booking/2}" class="book-button">Book</a>
+          </div>
+
+          <!-- Counselor Card 3 -->
+          <div class="counselor-card">
+            <img
+              th:src="@{/images/counselor3.png}"
+              alt="Photo of Dr. Leila Thompson"
+              class="counselor-photo"
+            />
+            <h3 class="counselor-name">Dr. Leila Thompson</h3>
+            <p class="counselor-bio">
+              Dr. Thompson works with students who struggle with shame or
+              trauma. Her sex-positive approach normalizes desires while
+              addressing underlying psychological distress.
+            </p>
+            <a th:href="@{/student/booking/3}" class="book-button">Book</a>
+          </div>
+
+          <!-- Counselor Card 4 -->
+          <div class="counselor-card">
+            <img
+              th:src="@{/images/counselor4.png}"
+              alt="Photo of Dr. Maria Flores"
+              class="counselor-photo"
+            />
+            <h3 class="counselor-name">Dr. Maria Flores</h3>
+            <p class="counselor-bio">
+              Maria Flores, LMFT, helps students build confidence and navigate
+              the pressures of perfectionism and career uncertainty. Her
+              approach is goal-oriented and empowering.
+            </p>
+            <a th:href="@{/student/booking/4}" class="book-button">Book</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

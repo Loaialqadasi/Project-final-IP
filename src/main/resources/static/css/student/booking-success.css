@@ -1,0 +1,49 @@
+:root {
+  --primary-teal: #68a099;
+  --primary-orange: #f39c12;
+  --success-bg: #fff4e6; /* Light orange */
+}
+
+.success-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.success-box {
+  background-color: var(--success-bg);
+  padding: 40px 60px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 500px;
+}
+
+.success-icon {
+  font-size: 50px;
+  color: green;
+  background-color: white;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+}
+
+.success-box h2 {
+  margin-bottom: 15px;
+}
+
+.success-box p {
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.ok-button {
+  background-color: var(--primary-orange);
+  color: white;
+  padding: 12px 40px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+}

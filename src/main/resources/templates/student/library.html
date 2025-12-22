@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/header :: headContent}"></head>
+
+  <body>
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <main class="content">
+      <header class="content-header">
+        <span>Welcome, Loai!</span>
+      </header>
+
+      <div class="library-wrapper">
+        <div class="library-header">
+          <h2>Mindful Bytes Help Library</h2>
+          <p>Find articles, exercises, and tools to support your well-being.</p>
+        </div>
+
+        <div class="toolkit-grid">
+          <!-- First Card (Highlighted) -->
+          <a th:href="@{/student/toolkit/1}" class="toolkit-card featured">
+            <h3>Mindful Moments</h3>
+            <p>Guided exercises to help you stay present.</p>
+          </a>
+
+          <!-- Second Card -->
+          <a th:href="@{/student/toolkit/2}" class="toolkit-card">
+            <h3>Resilience Toolkit</h3>
+            <p>Learn to bounce back from challenges.</p>
+          </a>
+
+          <!-- Add more cards as needed -->
+          <a href="#" class="toolkit-card">
+            <h3>Stress & Anxiety</h3>
+            <p>Resources for calming the mind.</p>
+          </a>
+
+          <a href="#" class="toolkit-card">
+            <h3>Better Sleep</h3>
+            <p>Guides for restful nights.</p>
+          </a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

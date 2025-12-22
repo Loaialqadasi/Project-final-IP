@@ -1,0 +1,195 @@
+/* Using CSS variables for easy theme management */
+:root {
+  --primary-teal: #68a099; /* The main accent color from your theme */
+  --light-gray-bg: #f5f5f3; /* The main content background */
+  --white-bg: #ffffff;
+  --dark-text: #333333;
+  --light-text: #888888;
+  --border-color: #e0e0e0;
+  --primary-orange: #f39c12; /* From your booking button */
+}
+
+body {
+  font-family: "Poppins", sans-serif; /* Or any clean sans-serif font you use */
+  margin: 0;
+  background-color: var(--light-gray-bg);
+}
+
+/* Main Layout - Recreating your theme's structure */
+.main-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--white-bg);
+  min-height: 100vh;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  /* Basic sidebar styling for demo */
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px 40px;
+}
+
+.content-header {
+  text-align: right;
+  margin-bottom: 40px;
+}
+
+/* Booking Page Specific Styles */
+.booking-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--primary-teal);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.booking-header h2 {
+  color: var(--dark-text);
+  margin: 0;
+}
+
+.booking-header p {
+  color: var(--light-text);
+  margin-top: 5px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+}
+
+.booking-interface {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+/* Calendar Widget Styles */
+.calendar-widget {
+  flex-basis: 50%;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header h3 {
+  margin: 0;
+}
+
+.nav-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.day-name {
+  font-weight: 600;
+  color: var(--light-text);
+}
+
+.day {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.day:hover {
+  background-color: #eaf1f0; /* Lighter teal */
+}
+
+.day.selected {
+  background-color: var(--primary-teal);
+  color: var(--white-bg);
+}
+
+.day.unavailable {
+  color: #ccc;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* Time Slots Styles */
+.time-slots {
+  flex-basis: 50%;
+  padding-left: 40px;
+  border-left: 1px solid var(--border-color);
+}
+
+.time-slots h4 {
+  margin-top: 0;
+}
+
+.slots-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.time-slot-btn {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  background-color: var(--white-bg);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.time-slot-btn:hover {
+  border-color: var(--primary-teal);
+}
+
+.time-slot-btn.selected {
+  background-color: var(--primary-teal);
+  color: var(--white-bg);
+  border-color: var(--primary-teal);
+}
+
+.time-slot-btn:disabled {
+  background-color: #f9f9f9;
+  color: #ccc;
+  cursor: not-allowed;
+  border-color: #eee;
+}
+
+/* Confirmation Section */
+.confirm-section {
+  text-align: right;
+  margin-top: 40px;
+}
+
+.confirm-btn {
+  background-color: var(--primary-orange);
+  color: var(--white-bg);
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.confirm-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
