@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/header :: headContent}"></head>
+
+  <body>
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <main class="content">
+      <header class="content-header">
+        <span>Welcome, Loai!</span>
+      </header>
+
+      <div class="chatbot-wrapper">
+        <div class="chatbot-header">
+          <h2>Mindful Bytes AI Assistant</h2>
+          <p>Welcome to Calmi! I'm a supportive chatbot here to listen 24/7.</p>
+          <div class="emergency-notice">
+            <strong>Important:</strong> I am not a substitute for a human
+            counselor. If this is an emergency, please seek immediate help.
+          </div>
+        </div>
+
+        <div class="chat-window">
+          <!-- Bot's welcome message -->
+          <div class="chat-message bot-message">
+            <div class="message-bubble">
+              <p>
+                Hi, I'm Calmi. Whatever is on your mind, I'm here to listen
+                without judgment. What are you thinking about today?
+              </p>
+            </div>
+          </div>
+
+          <!-- User's reply message (example) -->
+          <div class="chat-message user-message">
+            <div class="message-bubble">
+              <p>I'm just feeling really overwhelmed.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <input
+            type="text"
+            placeholder="Type your message here..."
+            class="chat-input"
+          />
+          <button class="send-button">&#9658;</button>
+          <!-- Right-pointing triangle -->
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

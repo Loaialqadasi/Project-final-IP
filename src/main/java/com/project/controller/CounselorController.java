@@ -1,68 +1,85 @@
 package com.project.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 @Controller
 public class CounselorController {
 
-    // MODULE 5: Case Management Dashboard (UC010 & UC012)
+    // --- TEMPORARY MEMORY FOR DEMO ---
+    // This variable will hold the note text while the server is running.
+    private String savedNote = "Student needs more self depends and less stress in his daily life.";
+    private String savedDate = "2025-05-05";
+
     @GetMapping("/counselor/dashboard")
     public String dashboard(Model model) {
-        // MOCK DATA: Simulating a database fetch
-        // In Phase 3, we will replace this with a real Database call.
+        // 1. Mock Student Data
         List<Map<String, Object>> students = new ArrayList<>();
-        
-        students.add(Map.of("id", 1, "name", "Khalid Ahmed", "matric", "A23CS0001", "status", "High Risk", "score", 18));
-        students.add(Map.of("id", 2, "name", "Sarah Lee", "matric", "A23CS0002", "status", "Stable", "score", 5));
-        students.add(Map.of("id", 3, "name", "Youssef Badr", "matric", "A23CS0003", "status", "Attention Needed", "score", 12));
+        students.add(Map.of("id", 1, "name", "KHALID", "matric", "A23CS0001", "status", "High Risk", "score", 18));
+        students.add(Map.of("id", 2, "name", "Youssef", "matric", "A23CS0002", "status", "Attention Needed", "score", 12));
+        students.add(Map.of("id", 3, "name", "Ahmed", "matric", "A23CS0003", "status", "Stable", "score", 5));
+        students.add(Map.of("id", 4, "name", "Salem", "matric", "A23CS0004", "status", "Stable", "score", 2));
 
-        model.addAttribute("counselorName", "Dr. Nurul Aida"); // Dummy logged-in counselor
+        model.addAttribute("counselorName", "Loai");
         model.addAttribute("students", students);
         
-        return "counselor/dashboard"; // Loads templates/counselor/dashboard.html
-    }
-
-    // MODULE 6: Session & Follow-up Management (UC011)
-    @GetMapping("/counselor/student/{id}")
-    public String viewStudentProfile(@PathVariable("id") int id, Model model) {
-        // MOCK DATA for a specific student
-        model.addAttribute("studentName", "Khalid Ahmed");
-        model.addAttribute("studentId", id);
+        // 2. Send the SAVED DATA to the HTML
+        model.addAttribute("currentNote", savedNote);
+        model.addAttribute("currentDate", savedDate);
         
-        // Mock History of Notes
-        List<String> history = List.of(
-            "10 Oct: Student reported trouble sleeping.",
-            "02 Nov: Showing signs of improvement. Recommended meditation."
-        );
-        model.addAttribute("history", history);
-
-        return "counselor/session_notes"; // Loads templates/counselor/session_notes.html
+        return "counselor/dashboard";
     }
 
-    // Saving a new note (Phase 2 Demo Logic)
     @PostMapping("/counselor/note/save")
-    public String saveNote(@RequestParam String noteContent, @RequestParam int studentId, Model model) {
-        // In Phase 3, this will save to MySQL.
-        // For Phase 2, we just reload the page and show a success message.
+    public String saveNote(@RequestParam String noteContent, 
+                           @RequestParam String date,
+                           Model model) {
         
-        model.addAttribute("success", "Note saved successfully!");
-        model.addAttribute("studentName", "Khalid Ahmed"); // Keep dummy data consistent
-        model.addAttribute("studentId", studentId);
-        model.addAttribute("history", List.of(
-            "10 Oct: Student reported trouble sleeping.",
-            "02 Nov: Showing signs of improvement. Recommended meditation.",
-            "Just Now: " + noteContent // Show the new note immediately
-        ));
+        // 3. Update the Memory with what you typed
+        this.savedNote = noteContent;
+        this.savedDate = date;
         
-        return "counselor/session_notes";
+        System.out.println("Updated Note: " + this.savedNote);
+
+        return "redirect:/counselor/dashboard"; 
+    }
+
+    @GetMapping("/counselor/appointments")
+    public String appointments() {
+        return "counselor/appointments";
+    }
+
+    @GetMapping("/counselor/profile")
+    public String profile() {
+        return "counselor/profile";
+    }
+
+    @GetMapping("/counselor/forum")
+    public String forum() {
+        return "counselor/forum";
+    }
+
+    @GetMapping("/counselor/students")
+    public String students(Model model) {
+        List<Map<String, Object>> students = new ArrayList<>();
+        students.add(Map.of("id", 1, "name", "KHALID", "matric", "A23CS0001", "status", "High Risk"));
+        students.add(Map.of("id", 2, "name", "Youssef", "matric", "A23CS0002", "status", "Attention Needed"));
+        students.add(Map.of("id", 3, "name", "Ahmed", "matric", "A23CS0003", "status", "Stable"));
+        students.add(Map.of("id", 4, "name", "Salem", "matric", "A23CS0004", "status", "Stable"));
+        
+        model.addAttribute("students", students);
+        return "counselor/students";
+    }
+
+    @GetMapping("/counselor/settings")
+    public String settings() {
+        return "counselor/settings";
     }
 }

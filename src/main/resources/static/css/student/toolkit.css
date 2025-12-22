@@ -1,0 +1,62 @@
+:root {
+  --dark-text: #333333;
+  --light-text: #888888;
+  --border-color: #e0e0e0;
+  --white-bg: #ffffff;
+}
+
+.toolkit-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.toolkit-header {
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+}
+
+.resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.resource-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--white-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.resource-card:hover {
+  transform: translateY(-3px);
+}
+
+.resource-icon {
+  font-size: 2rem;
+  margin-right: 20px;
+}
+
+.resource-details {
+  flex-grow: 1;
+}
+
+.resource-details h3 {
+  margin: 0 0 5px 0;
+  color: var(--dark-text);
+}
+
+.resource-details p {
+  margin: 0;
+  color: var(--light-text);
+}
+
+.resource-duration {
+  color: var(--light-text);
+  font-weight: 500;
+}

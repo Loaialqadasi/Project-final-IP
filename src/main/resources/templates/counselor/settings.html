@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Settings - Counselor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="dashboard-container">
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <div style="background-color: #A8E6CF; width: 40px; height: 40px; border-radius: 50%;"></div>
+            <span>Mindful Bytes</span>
+        </div>
+        <div class="sidebar-menu">
+            <a href="/counselor/dashboard">Dashboard</a>
+            <a href="/counselor/appointments">Appointments</a>
+            <a href="/counselor/profile">Profile</a>
+            <a href="/counselor/forum">Forum</a>
+        </div>
+        <div class="consular-section">
+            <small class="text-muted fw-bold">Consular</small>
+            <a href="/counselor/students" class="assigned-btn" style="display: block; text-decoration: none; color: #333;">My Assigned Students</a>
+        </div>
+        <div class="mt-auto">
+            <a href="/counselor/settings" class="text-muted active" style="text-decoration: none;"><i class="bi bi-gear"></i> Settings</a>
+        </div>
+    </div>
+
+    <div class="main-content d-flex flex-column">
+        <h4 class="fw-bold mb-4">Settings</h4>
+        <div class="card shadow-sm border-0 p-4" style="border-radius: 20px;">
+            <h5 class="fw-bold mb-3">Account Settings</h5>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Email Notifications</label>
+                    <input type="checkbox" class="form-check-input"> Enable email alerts
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Privacy Level</label>
+                    <select class="form-select">
+                        <option>Public</option>
+                        <option>Private</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary rounded-pill">Save Settings</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

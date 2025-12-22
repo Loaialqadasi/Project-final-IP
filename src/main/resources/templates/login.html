@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headContent}"></head>
+<body style="background-color: #F8F9FA; font-family: 'Poppins', sans-serif; height: 100vh; display: flex; align-items: center; justify-content: center;">
+
+<div class="card shadow border-0 p-5" style="width: 450px; border-radius: 20px;">
+    <h2 class="fw-bold mb-2 text-center">Log In</h2>
+    <p class="text-center text-muted mb-4">Admin: admin/admin <br> Student: [AnyName]/[SameName]</p>
+    
+    <form action="/login" method="post">
+        <div class="mb-3">
+            <label class="form-label fw-bold">Username</label>
+            <input type="text" name="username" class="form-control p-3 rounded-3" placeholder="e.g. Adam" required>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label fw-bold">Password</label>
+            <input type="password" name="password" class="form-control p-3 rounded-3" placeholder="Same as username for demo" required>
+        </div>
+
+        <button type="submit" class="btn text-white w-100 p-3 rounded-pill fw-bold" style="background-color: #333;">Get Started</button>
+    </form>
+</div>
+</body>
+</html>

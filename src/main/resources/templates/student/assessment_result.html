@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headContent}"></head>
+
+<link rel="stylesheet" th:href="@{/css/student/assessment-result.css}" />
+
+<body>
+
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <div class="assessment-page">
+        <div class="container">
+            <div class="assessment-header text-center">
+                <h1 class="page-title">Stress & Anxiety Assessment</h1>
+                <p class="date-text">Completed on <span th:text="${date}">Today</span></p>
+            </div>
+
+            <div class="card result-card-center">
+                <div class="score-area">
+                    <div class="circle-wrap">
+                        <svg class="progress-ring" viewBox="0 0 220 220">
+                            <circle class="progress-ring__back" stroke="#E5E7EB" stroke-width="18" r="100" cx="110" cy="110" fill="transparent"/>
+                            <circle class="progress-ring__front"
+                                    th:stroke="${(score * 1.0 / maxScore) > 0.6 ? '#EF4444' : ((score * 1.0 / maxScore) > 0.35 ? '#F59E0B' : '#22C55E')}"
+                                    stroke-width="18" r="100" cx="110" cy="110"
+                                    stroke-dasharray="628"
+                                    th:stroke-dashoffset="${628 - (628 * (score * 1.0 / maxScore))}" fill="transparent"></circle>
+                        </svg>
+
+                        <div class="circle-inner">
+                            <div class="score-number" th:text="${score}">0</div>
+                            <div class="score-total">/ <span th:text="${maxScore}">27</span></div>
+                        </div>
+                    </div>
+
+                    <div th:class="'status-badge ' + ${badgeClass}" th:text="${status}"></div>
+                </div>
+            </div>
+
+            <div class="card meaning-card">
+                <div class="meaning-content">
+                    <h3 class="meaning-title">What this means</h3>
+                    <p class="meaning-text" th:text="${feedbackText}">Loading your detailed analysis...</p>
+
+                    <div class="actions">
+                        <a th:href="@{/student/library}" class="btn-blue-solid">Explore Self-Help Resources...</a>
+                        <a th:href="@{/assessment/download(data=${downloadData})}" class="btn-gray-solid">Download Full Report</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meta text-center">
+                <a href="#" class="learn-link">Learn more about this assessment</a>
+                <p class="small muted">Your results are confidential. <a href="#" class="privacy-link">Privacy Policy</a>.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

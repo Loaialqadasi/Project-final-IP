@@ -1,0 +1,30 @@
+/* Assessment result specific styles */
+body { background-color: #f3f4f6; }
+.assessment-page .container { max-width: 760px; margin: 32px auto; }
+.assessment-header .page-title { font-size: 28px; font-weight:700; margin-bottom:6px; }
+.assessment-header .date-text { color:#6b7280; margin-bottom:18px; }
+.card { background:#ffffff; border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.06); padding:28px; margin-bottom:20px; }
+.result-card-center { display:flex; justify-content:center; align-items:center; padding:30px; }
+.score-area { text-align:center; }
+.circle-wrap { position:relative; width:220px; height:220px; margin:0 auto 12px; }
+.progress-ring { width:100%; height:100%; display:block; }
+.progress-ring__back { stroke-linecap:round; }
+.progress-ring__front { stroke-linecap:round; transform:rotate(-90deg); transform-origin:center; transition:stroke-dashoffset .6s ease; }
+.circle-inner { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+.score-number { font-size:36px; font-weight:700; }
+.score-total { color:#6b7280; }
+.status-badge { display:inline-block; margin-top:8px; padding:6px 12px; border-radius:999px; font-weight:600; font-size:13px; }
+.status-badge.low { background:#e6fff0; color:#059669; }
+.status-badge.moderate { background:#fff7ed; color:#b45309; }
+.status-badge.high { background:#fff1f2; color:#b91c1c; }
+.meaning-card { padding:26px; }
+.meaning-title { font-size:20px; margin-bottom:10px; }
+.meaning-text { color:#374151; line-height:1.6; }
+.actions { display:flex; gap:12px; margin-top:18px; }
+.btn-blue-solid { background:#2563eb; color:#fff; border-radius:8px; padding:10px 18px; border:0; }
+.btn-blue-solid:disabled { opacity:0.7; }
+.btn-gray-solid { background:#f3f4f6; color:#111827; border-radius:8px; padding:10px 18px; text-decoration:none; display:inline-flex; align-items:center; }
+.meta { margin-top:6px; color:#6b7280; }
+.learn-link { color:#6b7280; text-decoration:underline; }
+.privacy-link { color:#6b7280; }
+@media (max-width:600px){ .assessment-page .container{ padding:16px } .circle-wrap{ width:180px; height:180px } }

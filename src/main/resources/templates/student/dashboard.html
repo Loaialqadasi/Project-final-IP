@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headContent}"></head>
+<body style="background-color: #F0F8FA; font-family: 'Poppins', sans-serif;">
+
+<nav th:replace="~{fragments/header :: navbar}"></nav>
+
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div class="d-none d-md-block bg-white shadow-sm p-4" style="width: 250px; min-height: 100vh;">
+        <h5 class="fw-bold mb-4" style="color: #2C3E50;">Mindful Bytes</h5>
+        <a href="#" class="d-block text-decoration-none mb-3 text-muted fw-bold" style="color: #6BAA95 !important;">Dashboard</a>
+        <a href="/logout" class="d-block text-decoration-none mb-3 text-danger">Logout</a>
+    </div>
+
+    <div class="flex-grow-1 p-5">
+        <!-- Dynamic Welcome Message -->
+        <h2 class="fw-bold mb-2" style="color: #2C3E50;">Hello, <span th:text="${username}">Student</span>! 👋</h2>
+        <p class="text-muted mb-4">Welcome back to your dashboard.</p>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0 p-4" style="border: 2px solid #6BAA95;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold" style="color: #2C3E50;">📈 Progress Tracker</h5>
+                        <p class="card-text text-muted">Track your goals and history.</p>
+                        <a href="/student/tracker" class="btn text-white w-100 rounded-pill mt-3" style="background-color: #6BAA95;">Open Tracker</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

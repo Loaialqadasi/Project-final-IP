@@ -1,0 +1,80 @@
+:root {
+  --primary-orange: #f39c12;
+  --light-gray-bg: #f5f5f3;
+  --white-bg: #ffffff;
+  --dark-text: #333333;
+  --light-text: #888888;
+}
+
+.counselors-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.counselors-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.counselors-header h2 {
+  color: var(--dark-text);
+}
+
+.counselors-header p {
+  color: var(--light-text);
+  font-size: 1.1rem;
+}
+
+.counselor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.counselor-card {
+  background-color: var(--light-gray-bg);
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.counselor-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 15px auto;
+  border: 3px solid var(--white-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.counselor-name {
+  margin-bottom: 10px;
+  color: var(--dark-text);
+}
+
+.counselor-bio {
+  color: var(--light-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1; /* This makes the bio take up space to align buttons */
+}
+
+.book-button {
+  background-color: var(--primary-orange);
+  color: var(--white-bg);
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: auto; /* Pushes the button to the bottom */
+  transition: background-color 0.2s;
+}
+
+.book-button:hover {
+  background-color: #e67e22; /* A slightly darker orange */
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headContent}"></head>
+<head><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body style="background-color: #F8F9FA; font-family: 'Poppins', sans-serif;">
+
+<nav th:replace="~{fragments/header :: navbar}"></nav>
+
+<div class="d-flex">
+    <div class="d-none d-md-block bg-white shadow-sm p-4" style="width: 250px; min-height: 100vh;">
+        <h5 class="fw-bold mb-4">Admin Panel</h5>
+        <a href="#" class="d-block text-decoration-none mb-3 fw-bold p-2 rounded" style="background-color: #E0F2F7; color: #2E86C1;">Dashboard</a>
+        <a href="/admin/users" class="d-block text-decoration-none mb-3 text-muted">User Management</a>
+        <a href="/logout" class="d-block text-decoration-none mb-3 text-danger">Logout</a>
+    </div>
+
+    <div class="container mt-5 px-5">
+        <h2 class="fw-bold mb-2">Administrator Dashboard</h2>
+        <p class="text-muted mb-5">Welcome, Admin!</p>
+        
+        <!-- KPI Cards -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="card h-100 shadow-sm border-0 p-3" style="border-radius: 20px;">
+                    <div class="card-body">
+                        <p class="text-muted mb-1">Total Users</p>
+                        <h1 class="fw-bold display-4 mb-0" th:text="${totalUsers}">0</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 shadow-sm border-0 p-3" style="border-radius: 20px;">
+                    <div class="card-body">
+                        <p class="text-muted mb-1">Active Users</p>
+                        <h1 class="fw-bold display-4 mb-0" th:text="${activeUsers}">0</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHARTS SECTION -->
+        <div class="row g-4">
+            <!-- Student Engagement (Bar Chart) -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 p-4" style="border-radius: 20px;">
+                    <h5 class="fw-bold mb-4">Student Engagement</h5>
+                    <canvas id="engagementChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Mood Distribution (Doughnut Chart) -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 p-4" style="border-radius: 20px;">
+                    <h5 class="fw-bold mb-4">Anonymized Mood Distribution</h5>
+                    <canvas id="moodDistChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    // 1. Data for Engagement (Using Total Users to show growth)
+    var totalUsers = /*[[${userCount}]]*/ 0;
+    // Fake trend data based on total users for the demo
+    var engagementData = [totalUsers - 2, totalUsers - 1, totalUsers, totalUsers + 1, totalUsers + 3];
+
+    new Chart(document.getElementById('engagementChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            datasets: [{
+                label: 'Active Logins',
+                data: engagementData,
+                backgroundColor: '#5DADE2',
+                borderRadius: 5
+            }]
+        },
+        options: { scales: { y: { beginAtZero: true } } }
+    });
+
+    // 2. Data for Mood Distribution (Real Data from Java)
+    var happy = /*[[${happyCount}]]*/ 0;
+    var neutral = /*[[${neutralCount}]]*/ 0;
+    var sad = /*[[${sadCount}]]*/ 0;
+    /*]]>*/
+
+    new Chart(document.getElementById('moodDistChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Happy/Calm', 'Neutral', 'Sad/Anxious'],
+            datasets: [{
+                data: [happy, neutral, sad],
+                backgroundColor: ['#2ECC71', '#F1C40F', '#E74C3C']
+            }]
+        }
+    });
+</script>
+
+</body>
+</html>
