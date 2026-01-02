@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/header :: headContent}"></head>
+
+  <body>
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <main class="content">
+      <div class="toolkit-wrapper">
+        <a th:href="@{/student/library}" class="back-link"
+          >&larr; Back to Help Library</a
+        >
+
+        <div class="toolkit-header">
+          <!-- The title comes dynamically from our controller -->
+          <h2 th:text="${toolkitTitle}">Toolkit Name</h2>
+          <p>Explore these resources to support your well-being.</p>
+        </div>
+
+        <div class="resource-list">
+          <!-- 
+              This is the Thymeleaf loop. It will repeat this 'div'
+              for every single 'resource' object in the 'resources' list.
+            -->
+          <div class="resource-card" th:each="resource : ${resources}">
+            <!-- This switch statement shows a different icon based on the resource type -->
+            <div class="resource-icon" th:switch="${resource.type}">
+              <span th:case="'Article'">📄</span>
+              <span th:case="'Video'">▶️</span>
+              <span th:case="'Audio'">🎧</span>
+            </div>
+            <div class="resource-details">
+              <h3 th:text="${resource.title}">Resource Title</h3>
+              <p th:text="${resource.description}">
+                Resource description goes here.
+              </p>
+            </div>
+            <div class="resource-duration" th:text="${resource.duration}">
+              5 min read
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

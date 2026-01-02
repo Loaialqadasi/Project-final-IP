@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/header :: headContent}"></head>
+
+  <body>
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <!-- Main Content Area -->
+    <main class="content">
+      <header class="content-header">
+        <span>Welcome, Loai!</span>
+      </header>
+
+      <div class="booking-wrapper">
+        <a th:href="@{/student/counselors}" class="back-link"
+          >&larr; Back to Counselors</a
+        >
+
+        <div class="booking-header">
+          <h2>
+            Book a Session with
+            <span th:text="${counselorName}">A Counselor</span>
+          </h2>
+          <p>Please select a day and time that works for you.</p>
+        </div>
+
+        <form th:action="@{/student/booking/submit}" method="post">
+          <!-- Hidden input fields to store the selection for submission -->
+          <input type="hidden" id="selected-day-input" name="day" />
+          <input type="hidden" id="selected-time-input" name="time" />
+          <!-- You could also add the counselor's ID to know who is being booked -->
+          <!-- <input type="hidden" name="counselorId" th:value="${counselorId}"> -->
+
+          <div class="booking-interface">
+            <!-- Calendar Widget -->
+            <div class="calendar-widget">
+              <div class="calendar-header">
+                <button type="button" class="nav-btn">&lt;</button>
+                <h3>July 2025</h3>
+                <button type="button" class="nav-btn">&gt;</button>
+              </div>
+              <div class="calendar-grid">
+                <div class="day-name">M</div>
+                <div class="day-name">T</div>
+                <div class="day-name">W</div>
+                <div class="day-name">T</div>
+                <div class="day-name">F</div>
+                <div class="day-name">S</div>
+                <div class="day-name">S</div>
+                <div class="day unavailable">29</div>
+                <div class="day unavailable">30</div>
+                <div class="day">1</div>
+                <div class="day">2</div>
+                <div class="day">3</div>
+                <div class="day">4</div>
+                <div class="day">5</div>
+                <div class="day">6</div>
+                <div class="day">7</div>
+                <div class="day unavailable">8</div>
+                <div class="day">9</div>
+                <div class="day">10</div>
+                <div class="day">11</div>
+                <div class="day">12</div>
+                <div class="day">13</div>
+                <div class="day">14</div>
+                <div class="day">15</div>
+                <div class="day">16</div>
+                <div class="day">17</div>
+                <div class="day">18</div>
+                <div class="day">19</div>
+                <div class="day">20</div>
+              </div>
+            </div>
+
+            <!-- Time Slots Section -->
+            <div class="time-slots">
+              <h4 id="time-slots-header">Select a date to see times</h4>
+              <div class="slots-container">
+                <button type="button" class="time-slot-btn">8:00 AM</button>
+                <button type="button" class="time-slot-btn">10:00 AM</button>
+                <button type="button" class="time-slot-btn">2:00 PM</button>
+                <button type="button" class="time-slot-btn" disabled>
+                  4:00 PM
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="confirm-section">
+            <!-- This button now submits the form -->
+            <button id="confirm-btn" type="submit" class="confirm-btn" disabled>
+              Confirm Session
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Get references to all the important elements ---
+        const calendarDays = document.querySelectorAll(
+          ".calendar-grid .day:not(.unavailable)"
+        );
+        const timeSlotButtons = document.querySelectorAll(
+          ".time-slots .time-slot-btn:not(:disabled)"
+        );
+        const confirmButton = document.getElementById("confirm-btn");
+        const timeSlotsHeader = document.getElementById("time-slots-header");
+
+        // References to our new hidden input fields
+        const selectedDayInput = document.getElementById("selected-day-input");
+        const selectedTimeInput = document.getElementById(
+          "selected-time-input"
+        );
+
+        let selectedDay = null;
+        let selectedTime = null;
+
+        // --- Add click listener to every available day ---
+        calendarDays.forEach((day) => {
+          day.addEventListener("click", function () {
+            calendarDays.forEach((d) => d.classList.remove("selected"));
+            this.classList.add("selected");
+            selectedDay = this;
+
+            // UPDATE: Populate the hidden day input with the selected day
+            selectedDayInput.value = this.textContent.trim();
+
+            timeSlotsHeader.textContent = `Available Times for July ${this.textContent}`;
+            updateConfirmButtonState();
+          });
+        });
+
+        // --- Add click listener to every available time slot ---
+        timeSlotButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            timeSlotButtons.forEach((btn) => btn.classList.remove("selected"));
+            this.classList.add("selected");
+            selectedTime = this;
+
+            // UPDATE: Populate the hidden time input with the selected time
+            selectedTimeInput.value = this.textContent.trim();
+
+            updateConfirmButtonState();
+          });
+        });
+
+        // --- Function to enable/disable the confirm button ---
+        function updateConfirmButtonState() {
+          if (selectedDay && selectedTime) {
+            confirmButton.disabled = false;
+          } else {
+            confirmButton.disabled = true;
+          }
+        }
+
+        // Initial check to ensure the button starts disabled
+        updateConfirmButtonState();
+      });
+    </script>
+  </body>
+</html>
