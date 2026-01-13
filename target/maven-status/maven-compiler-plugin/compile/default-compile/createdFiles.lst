@@ -1,6 +1,0 @@
-com\project\Mental\service\AssessmentService.class
-com\project\Mental\controller\AssessmentController.class
-com\project\Mental\dao\AssessmentResultDAO.class
-com\project\Mental\model\AssessmentResult.class
-com\project\Mental\MindfulBytesApplication.class
-com\project\Mental\controller\MainController.class
