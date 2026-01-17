@@ -1,0 +1,67 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: headContent}"></head>
+
+<body>
+
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    <div class="container py-5">
+        <h2 class="mb-4 fw-bold">Student Dashboard</h2>
+        <p class="text-muted mb-5">Welcome back! Here's a quick overview of your MindWell journey.</p>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card-custom h-100">
+                    <h3 class="fw-bold mb-3">Start Your Mental Health Assessment</h3>
+                    <p class="text-muted mb-4">This assessment is a safe space for you to reflect on your well-being. It takes about 10-15 minutes.</p>
+                    <a href="/assessment" class="btn-primary-blue">Start Assessment Now</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-custom h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-light rounded-circle p-2 me-3">
+                            <span style="font-size: 24px;">🕒</span>
+                        </div>
+                        <h4 class="fw-bold mb-0">Your Progress Summary</h4>
+                    </div>
+                    <p class="text-muted small">See how far you've come on your well-being journey.</p>
+                    
+                    <div class="d-flex justify-content-between mt-4 mb-2">
+                        <span class="fw-bold">Assessments Completed</span>
+                        <span class="text-success fw-bold">3 of 5</span>
+                    </div>
+                    <div class="progress-container mb-3" style="height: 6px;">
+                        <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-muted small">Last Check-in Score</span>
+                        <span class="text-success fw-bold small">85%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card-custom h-100">
+                    <h4 class="fw-bold mb-3">Support Resources</h4>
+                    <p class="text-muted small mb-4">Find articles, tools, and contacts to help you thrive.</p>
+                    
+                    <a href="#" class="d-block p-3 bg-light rounded mb-2 text-decoration-none text-dark fw-bold">
+                        Mental Health Guides &rarr;
+                    </a>
+                    <a href="#" class="d-block p-3 bg-light rounded text-decoration-none text-dark fw-bold">
+                        Crisis Hotlines &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
